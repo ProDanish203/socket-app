@@ -42,7 +42,26 @@ export const sendMessage = async (req, res, next) => {
   }
 };
 
-export const logoutUser = async (req, res, next) => {
+export const getMessages = async (req, res, next) => {
+  try {
+    const userToChatId = req.params.id;
+    const senderId = req.user._id;
+
+    const chat = await Chat.findOne({
+      participants: { $all: [senderId, userToChatId] },
+    }).populate("messages");
+
+    return res.status(200).json({
+      success: true,
+      message: "Messages fetched successfully",
+      data: chat ? chat.messages : [],
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const fnName = async (req, res, next) => {
   try {
     return res.status(200).json({
       success: true,

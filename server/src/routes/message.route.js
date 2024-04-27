@@ -1,11 +1,10 @@
 import { Router } from "express";
-import { sendMessage } from "../controllers/message.controller.js";
+import { getMessages, sendMessage } from "../controllers/message.controller.js";
 import { verifyAuth } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
 router.post("/send/:id", verifyAuth, sendMessage);
-// router.post("/login", loginUser);
-// router.post("/logout", verifyAuth(), logoutUser);
+router.get("/:id", verifyAuth, getMessages);
 
 export default router;
