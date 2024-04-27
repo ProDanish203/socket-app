@@ -6,7 +6,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 // Routes
 import authRoute from "./routes/auth.route.js";
-import userRoute from "./routes/user.route.js";
+import messageRoute from "./routes/message.route.js";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
 
 // .env config
@@ -38,11 +38,11 @@ app.get("/", (req, res) => {
 });
 
 // Routes
-app.use("/api/v1/auth", authRoute)
-app.use("/api/v1/user", userRoute)
+app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/message", messageRoute);
 
 // Error Middleware
-app.use(errorMiddleware)
+app.use(errorMiddleware);
 const port = process.env.PORT || 5000;
 
 connDb()

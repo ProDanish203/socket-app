@@ -1,18 +1,22 @@
 import { Schema, model } from "mongoose";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import mongoosePaginate from "mongoose-paginate-v2";
-import validator from "validator";
 
 const ChatSchema = new Schema(
   {
-    hasUnreadChats: {
-      type: Boolean,
-      default: false,
-    },
+    participants: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    messages: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Message",
+        default: [],
+      },
+    ],
   },
   { timestamps: true }
 );
-
 
 export const Chat = model("Chat", ChatSchema);

@@ -22,7 +22,6 @@ export const registerUser = async (req, res, next) => {
 
     const avatar = `https://avatar.iran.liara.run/public/${gender === "male" ? "boy" : "girl"}?username=${username}`;
 
-    console.log(avatar)
     const user = await User.create({
       username,
       email,
