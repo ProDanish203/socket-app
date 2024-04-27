@@ -23,7 +23,7 @@ const SignupPage = () => {
     username: "",
     email: "",
     password: "",
-    gender: "male",
+    gender: "",
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +42,7 @@ const SignupPage = () => {
   };
 
   const router = useRouter();
-  console.log(info);
+
   const { mutateAsync, isPending } = useMutation({
     mutationFn: registerUser,
   });
@@ -52,6 +52,7 @@ const SignupPage = () => {
     // Validations
     if (!info.username) return toast.error("Username is required");
     if (!info.password) return toast.error("Password is required");
+    if (!info.gender) return toast.error("Please specify your gender");
     if (!info.email) return toast.error("Email is required");
     if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(info.email))
       return toast.error("Invalid Email address");
@@ -64,6 +65,7 @@ const SignupPage = () => {
       return toast.error(
         "Password must contain at least one uppercase letter, one digit, and one special character"
       );
+
 
     const { success, response } = await mutateAsync({
       username: info.username,
