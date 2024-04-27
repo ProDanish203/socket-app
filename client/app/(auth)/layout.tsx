@@ -3,15 +3,15 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import { Toaster } from "sonner";
 import Image from "next/image";
-// import ReactQueryProvider from "@/store/ReactQueryProvider";
-// import { AuthProvider } from "@/store/AuthProvider";
+import ReactQueryProvider from "@/store/ReactQueryProvider";
+import { AuthProvider } from "@/store/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Github",
+  title: "Chat Application",
   description:
-    "A version control system for managing projects and defining user acces",
+    "A basic chat application with one-on-one chatting functionality",
 };
 
 export default function RootLayout({
@@ -22,8 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* <ReactQueryProvider>
-          <AuthProvider> */}
+        <ReactQueryProvider>
+          <AuthProvider>
             <main className="flex flex-col md:flex-row md:min-h-screen">
               <Toaster position="top-right" richColors />
               {/* Left Section */}
@@ -43,8 +43,8 @@ export default function RootLayout({
                 {children}
               </div>
             </main>
-          {/* </AuthProvider>
-        </ReactQueryProvider> */}
+          </AuthProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
