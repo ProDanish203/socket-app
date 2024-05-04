@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
-  const publicPaths = ["/login", "/register"];
+  const publicPaths = ["/login", "/signup"];
   const isPublicPath = publicPaths.includes(path);
 
   const privatePaths = ["/"];
@@ -21,5 +21,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/login", "/register", "/"],
+  matcher: ["/login", "/signup", "/"],
 };

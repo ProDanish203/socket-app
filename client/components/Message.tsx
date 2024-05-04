@@ -15,7 +15,7 @@ export const Message = ({ isUser }: { isUser?: boolean }) => {
       ) : (
         <div className="flex items-start gap-x-2 w-full ml-auto">
           <UserAvatar size="size-7" />
-          <div className="rounded-[10px] bg-gray-200 text-bg text-sm p-2 max-w-[400px] w-full">
+          <div className="rounded-[10px] bg-gray-100 text-bg text-sm p-2 max-w-[400px] w-full">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis,
             accusamus?
           </div>

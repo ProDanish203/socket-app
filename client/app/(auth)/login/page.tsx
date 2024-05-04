@@ -46,7 +46,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Card className="mx-auto max-w-sm">
+    <Card className="mx-auto max-w-sm rounded-md">
       <CardHeader>
         <CardTitle className="text-2xl">Login</CardTitle>
         <CardDescription>
@@ -83,7 +83,7 @@ const LoginForm = () => {
           </div>
           <Button
             type="submit"
-            className="w-full bg-primaryCol hover:bg-primaryCol/90"
+            className="w-full bg-white hover:bg-white/90 rounded-md"
             disabled={isPending}
           >
             Login

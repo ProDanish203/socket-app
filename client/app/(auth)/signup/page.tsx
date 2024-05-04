@@ -157,7 +157,7 @@ const SignupPage = () => {
           </div>
           <Button
             type="submit"
-            className="w-full bg-primaryCol hover:bg-primaryCol/90 mt-2"
+            className="w-full bg-white hover:bg-white/90 mt-2"
             disabled={isPending}
           >
             Create an account
