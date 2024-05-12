@@ -30,12 +30,13 @@ export const Header = () => {
       setUser(data.response);
     }
   }, [data]);
-  
+
   return (
     <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background px-4">
       <h1 className="text-xl font-semibold max-md:hidden">Chat App</h1>
       <Menu className="size-6 cursor-pointer md:hidden" />
-      <div className="ml-auto">
+      <div className="ml-auto flex items-center gap-x-2">
+        <p className="text-sm font-semibold">{user && user.fullName}</p>
         <UserAvatar src={user && user.avatar} size="size-10" />
       </div>
     </header>

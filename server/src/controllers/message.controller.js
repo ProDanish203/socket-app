@@ -49,7 +49,21 @@ export const getMessages = async (req, res, next) => {
 
     const chat = await Chat.findOne({
       participants: { $all: [senderId, userToChatId] },
-    }).populate("messages");
+    }).populate({
+      path: "messages",
+      populate: [
+        {
+          path: "reciever",
+          model: User,
+          select: "username avatar",
+        },
+        {
+          path: "sender",
+          model: User,
+          select: "username avatar",
+        },
+      ],
+    });
 
     return res.status(200).json({
       success: true,

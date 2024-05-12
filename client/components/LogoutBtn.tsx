@@ -25,8 +25,13 @@ export const LogoutBtn = () => {
     router.push("/login");
   };
   return (
-    <Button variant="ghost" onClick={handleLogout} className="rounded-lg">
-      <LogOut className="" />
+    <Button
+      disabled={isPending}
+      variant="ghost"
+      onClick={handleLogout}
+      className="rounded-lg"
+    >
+      <LogOut />
     </Button>
   );
 };

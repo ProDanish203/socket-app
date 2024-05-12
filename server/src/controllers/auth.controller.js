@@ -78,8 +78,10 @@ export const logoutUser = async (req, res, next) => {
   try {
     // Cookie options
     const options = {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      // httpOnly: true,
+      // secure: process.env.NODE_ENV === "production",
+      httpOnly: false,
+      secure: false,
     };
 
     return res.status(200).clearCookie("accessToken", options).json({
