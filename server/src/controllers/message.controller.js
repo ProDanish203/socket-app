@@ -1,6 +1,7 @@
 import { User } from "../models/user.model.js";
 import { Chat } from "../models/chat.model.js";
 import { Message } from "../models/message.model.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 export const sendMessage = async (req, res, next) => {
   try {
@@ -30,6 +31,24 @@ export const sendMessage = async (req, res, next) => {
     if (newMessage) {
       chat.messages.push(newMessage._id);
       await chat.save();
+    }
+
+    const receiverSocketId = getReceiverSocketId(recieverId);
+    if (receiverSocketId) {
+      // io.to(<socket.id>).emit() is used to send events to a specific client
+      const sendMsg = await Message.findById(newMessage._id).populate([
+        {
+          path: "reciever",
+          model: User,
+          select: "username avatar",
+        },
+        {
+          path: "sender",
+          model: User,
+          select: "username avatar",
+        },
+      ]);
+      io.to(receiverSocketId).emit("newMessage", sendMsg);
     }
 
     return res.status(200).json({

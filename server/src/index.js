@@ -9,11 +9,12 @@ import authRoute from "./routes/auth.route.js";
 import userRoute from "./routes/user.route.js";
 import messageRoute from "./routes/message.route.js";
 import { errorMiddleware } from "./middlewares/error.middleware.js";
+import { app, server } from "./socket/socket.js";
 
 // .env config
 config();
 
-const app = express();
+// const app = express();
 
 const corsOptions = {
   credentials: true,
@@ -49,7 +50,7 @@ const port = process.env.PORT || 5000;
 
 connDb()
   .then(() => {
-    app.listen(port, () => {
+    server.listen(port, () => {
       console.log(`Server is listening live on port:${port}`);
     });
   })

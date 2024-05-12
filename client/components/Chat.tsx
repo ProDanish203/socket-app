@@ -4,11 +4,13 @@ import useConversation from "@/store/useConversation";
 import { useAuth } from "@/store/AuthProvider";
 import SendMessage from "./SendMessage";
 import { useEffect, useRef } from "react";
+import { useListenMessages } from "@/hooks/useListenMessages";
 
 export const Chat = () => {
   const { messages } = useConversation();
   const { user } = useAuth();
-
+  useListenMessages();
+  
   const lastMessageRef = useRef<HTMLDivElement>();
   useEffect(() => {
     setTimeout(() => {

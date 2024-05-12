@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import { User } from "@/types/types";
 import useConversation from "@/store/useConversation";
 import { getChats } from "@/API/chats.api";
+import { useSocket } from "@/store/SocketContext";
+import { Badge } from "@/components/ui/badge";
 
 // interface SearchParams {
 //   searchParams: {
@@ -23,6 +25,8 @@ const UserCard = ({ user, border }: { user: User; border: boolean }) => {
     setMessages,
     messages,
   } = useConversation();
+  const { onlineUsers } = useSocket();
+  const isOnline = onlineUsers.includes(user._id);
   const isSelected = selectedConversation?._id === user._id;
 
   const {
@@ -43,7 +47,9 @@ const UserCard = ({ user, border }: { user: User; border: boolean }) => {
 
   return (
     <div
-      className={`flex items-start gap-x-4 py-4 pl-5 ${border && "border-b"} ${
+      className={`relative flex items-start gap-x-4 py-4 pl-5 ${
+        border && "border-b"
+      } ${
         isSelected && "bg-gray-200/10"
       } hover:bg-gray-200/10  transition-all duration-150`}
       onClick={() => {
@@ -52,8 +58,13 @@ const UserCard = ({ user, border }: { user: User; border: boolean }) => {
       }}
     >
       <UserAvatar src={user.avatar} size="16" />
-      <div>
+      <div className="w-full flex items-center justify-between">
         <h2 className="text-lg font-semibold">{user.fullName}</h2>
+        {isOnline && (
+          <Badge className="right-2 border border-green-500 bg-transparent text-green-500 bg-green-900 hover:bg-green-900">
+            Online
+          </Badge>
+        )}
       </div>
     </div>
   );
